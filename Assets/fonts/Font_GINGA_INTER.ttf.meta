@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 7567933f16ef4e14398d95f8affe5ccc
+timeCreated: 1460947398
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 300
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Ginga Inter
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

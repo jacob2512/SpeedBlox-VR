@@ -1,0 +1,83 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NonVRTouchHandler : MonoBehaviour
+{
+	[SerializeField]
+    private Camera touchCamera;
+
+	[SerializeField]
+    private GameObject reticleObject;
+
+	bool hasInput = false;
+
+	float zDepth = 1f;
+
+	float cameraMoveSpeed = 4f;
+
+	Vector3 reticlePosition;
+
+	void Awake() 
+	{
+		Input.multiTouchEnabled = false;
+		// zDepth = reticleObject.transform.position.z;
+		// reticlePosition = reticleObject.transform.localPosition;
+	}
+
+	void Update() 
+	{
+	// 	Vector3 inputPosition = Vector3.zero;
+
+	// 	if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+	// 	{
+	// 		//print("touched!");
+	// 		hasInput = true;
+	// 		reticlePosition = Input.GetTouch(0).position;
+	// 		reticlePosition.z = zDepth;
+
+	// 	}
+		
+	// 	if(Input.GetMouseButton(0))
+    //  	{
+	// 		hasInput = true;
+	// 		reticlePosition = Input.mousePosition;
+	// 		reticlePosition.z = zDepth;
+	// 	}
+		
+
+	// 	// if(hasInput)
+	// 	// if((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+	// 	// || Input.GetMouseButton(0))
+	// 	// {
+	// 		reticleObject.transform.localPosition = 
+	// 		// touchCamera.ScreenToWorldPoint(
+	// 			reticlePosition
+	// 		// )
+	// 		;
+	// 	// }
+
+		if ((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved) 
+		// ||Input.GetMouseButton(0)
+		)
+		{
+			// print("touched!");
+			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			
+			// touchCamera.transform.Translate(
+			// 	-touchDeltaPosition.x * cameraMoveSpeed * Time.deltaTime, 
+			// 	-touchDeltaPosition.y * cameraMoveSpeed * Time.deltaTime, 
+			// 	0	
+			// );
+
+			// touchCamera.transform.LookAt(touchDeltaPosition);
+
+			Vector3 cameraEulerAngles = touchCamera.transform.eulerAngles;
+			touchCamera.transform.localEulerAngles = new Vector3(
+				cameraEulerAngles.x - touchDeltaPosition.y * Time.deltaTime * cameraMoveSpeed,
+				cameraEulerAngles.y + touchDeltaPosition.x * Time.deltaTime * cameraMoveSpeed, 
+				0
+			);
+		}
+	}
+}
